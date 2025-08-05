@@ -45,7 +45,7 @@ const translations = {
         "nav.experience": "Experiência",
         
         // Home
-        "home.description": "Product Manager focado em estratégia, tech e IA. Crio conteúdo sobre produto, carreira e mercado, de forma realista pra quem prefere honestidade a fórmulas prontas. Também dou mentoria de inglês conversacional para profissionais da área de TI.",
+        "home.description": "Product Manager focado em estratégia, tech e IA. Crio conteúdo sobre produto, carreira e mercado, de forma realista pra quem prefere honestidade a fórmulas prontas. Também dou mentoria de inglês conversacional para profissionais da área de tech.",
         "home.download_cv": "Download CV",
 
         // Social Media
