@@ -1,46 +1,54 @@
 # Repository Guidelines
 
-## Project Structure & Module Organization
-This repository is a static portfolio site. Keep `.codex/` metadata untouched.
-- `index.html`: single-page app shell and content sections.
-- `css/styles.css`: global styles, theme variables, and responsive rules.
-- `js/script.js`: UI behavior (menu, theme toggle, language switch, CV download).
-- `assets/images/` and `assets/documents/`: static media and downloadable files.
+## Project Scope
+This repository is a static portfolio website. Keep it framework-free unless there is a clear need. Favor simple, maintainable HTML, CSS, and vanilla JavaScript over heavy tooling.
 
-If the codebase grows, group new JavaScript modules under `src/` and mirror tests in `tests/` (for example, `src/i18n/translations.js` and `tests/i18n/translations.test.js`).
+## Project Structure & Module Organization
+Use and keep this layout predictable:
+- `index.html`: main page and semantic section structure.
+- `css/styles.css`: global styles, design tokens (CSS variables), responsive rules.
+- `js/script.js`: DOM behavior (theme toggle, language switch, interactions).
+- `assets/images/`: compressed images for UI.
+- `assets/documents/`: downloadable files (for example CV PDFs).
+- `docs/` (optional): notes for content, SEO, and design decisions.
 
 ## Build, Test, and Development Commands
-No build pipeline is required today.
-- `start index.html` (Windows): open the site quickly in the default browser.
-- `python -m http.server 8080`: serve locally at `http://localhost:8080` for realistic asset loading.
+No build step is required.
+- `start index.html` (Windows): quick visual check in browser.
+- `python -m http.server 8080`: local server at `http://localhost:8080` for realistic asset/path testing.
 
-When tooling is introduced, keep commands stable and CI-friendly:
-- `npm run dev`: local development mode.
-- `npm test`: automated test suite.
-- `npm run build`: production artifact generation.
+If scripts are added, keep them minimal:
+- `npm run lint`: code quality checks.
+- `npm run format`: formatting.
+- `npm test`: automated checks (if introduced).
 
 ## Coding Style & Naming Conventions
-- Follow existing style in each file: HTML/JS currently use 4-space indentation; CSS uses 2 spaces.
-- Prefer semantic HTML and clear, small JavaScript functions with explicit side effects.
-- Use descriptive names (`languageSelector`, `downloadCvButton`) and kebab-case for new file/folder names.
-- Run formatters/linters before commit when introduced; do not commit unformatted code.
+- Use semantic HTML (`header`, `main`, `section`, `footer`) and accessible attributes.
+- Keep CSS organized by section; prefer CSS variables for colors/spacing.
+- Use 2-space indentation for CSS and 4-space for HTML/JS.
+- Use `kebab-case` for file names and `camelCase` for JavaScript variables/functions.
+- Keep JavaScript functions small and focused on one behavior.
 
 ## Testing Guidelines
-Automated tests are not configured yet; include manual verification steps in PRs for UI changes (desktop/mobile layout, theme toggle, language switch, CV download links).
-When adding tests, use `*.test.*` naming and prioritize fast unit tests for behavior in `js/`.
+Automated tests are optional for this static project, but every change should include manual validation:
+- desktop and mobile layout
+- navigation and links
+- theme/language interactions
+- document downloads
+
+If automation is added, start with lightweight browser smoke tests for key user flows.
+
+## Assets, SEO, and Accessibility
+- Optimize images (`.webp`/`.avif` when possible) and compress documents before commit.
+- Add descriptive `alt` text, clear heading hierarchy, and keyboard-friendly interactions.
+- Keep metadata current (`title`, `description`, Open Graph tags) for sharing and search visibility.
+- Avoid committing source design exports that are not used at runtime.
 
 ## Commit & Pull Request Guidelines
-Current history is minimal and does not define a reliable pattern (`primeiro commit`, `commit teste`). Use Conventional Commits from now on:
-- `feat: add bilingual footer links`
-- `fix: correct CV download path`
-
-Each PR should include:
-- what changed and why
-- linked issue/task (if available)
-- test evidence (command + result, or manual checklist)
-- screenshots/GIFs for UI changes
+- Use Conventional Commits (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`).
+- PRs should include: what changed, why, manual test checklist, and screenshots for UI changes.
 
 ## Security & Configuration Tips
-- Never commit secrets or private tokens.
-- Keep downloadable documents sanitized (no personal metadata leaks).
-- Validate third-party CDN updates (Font Awesome, Google Fonts) before release.
+- Never commit secrets, tokens, or personal data.
+- Keep downloadable files sanitized (remove hidden metadata when possible).
+- Review third-party CDN links before updating versions.
