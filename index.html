@@ -1,117 +1,23 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enzo Bonomi - Product Manager</title>
-    <meta name="description" content="Product Manager focado em estratégia, tech e IA. Crio conteúdo sobre produto, carreira e mercado, de forma realista pra quem prefere honestidade a fórmulas prontas. Também dou mentoria de inglês conversacional para profissionais da área de tech.">
-    <meta name="keywords" content="Product Manager, Gestão de Produto, Marketing, SaaS, UX, Dados, Maringá, IA, Conteúdo">
-    <meta property="og:title" content="Enzo Bonomi - Product Manager">
-    <meta property="og:description" content="Product Manager, entusiasta de IA, criando conteúdo relevante porque isso me faz aprender.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="assets/images/enzo-photo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header class="header" id="header">
-        <nav class="nav container">
-            <div class="nav__logo">
-                <a href="#home">Enzo Bonomi</a>
-            </div>
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="#home" class="nav__link active-link" data-i18n="nav.home">Início</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#experience" class="nav__link" data-i18n="nav.experience">Experiência</a>
-                    </li>
-                </ul>
-                <div class="nav__close" id="nav-close">
-                    <i class="fas fa-times"></i>
-                </div>
-            </div>
-            <div class="nav__actions">
-                <div class="nav__language" id="language-selector">
-                    <select id="language-select" class="language-select">
-                        <option value="pt">PT</option>
-                        <option value="en">EN</option>
-                    </select>
-                </div>
-                <div class="nav__theme" id="theme-button">
-                    <i class="fas fa-moon change-theme" id="theme-icon"></i>
-                </div>
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main class="main">
-        <section class="home section" id="home">
-            <div class="home__container container grid">
-                <div class="home__image">
-                    <img src="assets/images/enzo-photo.png" alt="Enzo Bonomi" class="home__img">
-                </div>
-                <div class="home__data">
-                    <h1 class="home__name">Enzo Bonomi</h1>
-                    <p class="home__description" data-i18n="home.description">
-                        Product Manager focado em estratégia, tech e IA. Crio conteúdo sobre produto, carreira e mercado, de forma realista pra quem prefere honestidade a fórmulas prontas. Também dou mentoria de inglês conversacional para profissionais da área de tech.
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section class="social-media section">
-            <h2 class="section__title" data-i18n="social_media.title">Por onde estou</h2>
-            <span class="section__subtitle" data-i18n="social_media.subtitle">Conecte-se comigo</span>
-            <div class="social-media__container container grid">
-                <a href="https://enzobonomi.substack.com/profile/posts" target="_blank" class="social-media__card">
-                    <img src="assets/images/substacklogo.png" alt="Substack" class="social-media__icon">
-                    <h3 class="social-media__title">Substack</h3>
-                    <p class="social-media__description" data-i18n="social_media.substack_desc">Conteúdo aprofundado</p>
-                </a>
-                <a href="https://www.linkedin.com/in/enzobonomi/" target="_blank" class="social-media__card">
-                    <img src="assets/images/linkedinlogo.png" alt="LinkedIn" class="social-media__icon">
-                    <h3 class="social-media__title">LinkedIn</h3>
-                    <p class="social-media__description" data-i18n="social_media.linkedin_desc">Construindo em público</p>
-                </a>
-                <a href="https://x.com/enzobonomi" target="_blank" class="social-media__card">
-                    <img src="assets/images/xtwitterlogo.png" alt="Twitter X" class="social-media__icon">
-                    <h3 class="social-media__title">Twitter X</h3>
-                    <p class="social-media__description" data-i18n="social_media.twitter_x_desc">Por sua conta e risco</p>
-                </a>
-                <a href="https://youtube.com/@enzo.bonomi" target="_blank" class="social-media__card">
-                    <img src="assets/images/youtubelogo.png" alt="YouTube" class="social-media__icon">
-                    <h3 class="social-media__title">YouTube</h3>
-                    <p class="social-media__description" data-i18n="social_media.youtube_desc">Papo mais próximo</p>
-                </a>
-            </div>
-        </section>
-        <!--<section class="experience section" id="experience">
-            <h2 class="section__title" data-i18n="experience.title">Experiência Profissional</h2>
-            <div class="experience__container container">
-                <a href="#" class="button" id="download-cv">
-                    <i class="fas fa-download"></i>
-                    <span data-i18n="home.download_cv">Download CV</span>
-                </a>
-            </div>
-        </section>-->
-    </main>
-    <footer class="footer">
-        <div class="footer__container container">
-            <p class="footer__copy" data-i18n="footer.copyright">© 2025 Enzo Bonomi. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-    <a href="#home" class="scrollup" id="scroll-up">
-        <i class="fas fa-arrow-up scrollup__icon"></i>
-    </a>
-    <script src="js/script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enzo Bonomi | Profile Experiments</title>
+    <meta
+      name="description"
+      content="Five distinct profile concepts for Enzo Bonomi built with Vite, React, TypeScript, Tailwind, and Bun."
+    />
+    <meta property="og:title" content="Enzo Bonomi | Profile Experiments" />
+    <meta
+      property="og:description"
+      content="Creative profile directions across /1 to /5, each with a unique visual language."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/images/enzo-photo.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
-
-
