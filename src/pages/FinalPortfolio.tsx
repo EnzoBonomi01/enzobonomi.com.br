@@ -1,11 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { profile } from "../data/profile";
 import { fetchLatestSubstackPost, type LatestSubstackPost } from "../services/substack";
 
 type Locale = "pt-BR" | "es" | "en";
+type DesignMode = "brutalist" | "signal" | "paper";
+type ThemeVars = CSSProperties & Record<`--${string}`, string>;
 
 type TranslationSet = {
   languageLabel: string;
+  designLabel: string;
   heroTitle: string;
   currentTitle: string;
   currentRolePrefix: string;
@@ -17,71 +20,123 @@ type TranslationSet = {
   latestRead: string;
   socialTitle: string;
   socialVisit: string;
+  tickerLead: string;
   aiNote: string;
 };
 
 const copyByLocale: Record<Locale, TranslationSet> = {
   "pt-BR": {
     languageLabel: "Idioma",
+    designLabel: "Modo visual",
     heroTitle: "ENZO BONOMI",
-    // heroBody:
-    //   "Sou o Enzo. Gosto de pegar ideia baguncada, transformar em produto que funciona e compartilhar o que aprendo no caminho. Curto conversa direta, sem personagem e sem formula pronta.",
     currentTitle: "Onde estou agora",
     currentRolePrefix: "Analista de Projetos na ",
     companyLabel: "UDS Tecnologia",
     currentDescription:
-      "Atuo na concepcao e discovery de projetos digitais, alinhando requisitos, estimativas e direcionamento de produto com apoio de IA.",
-    latestTitle: "Ultimo artigo no Substack",
+      "Atuo em ideação, definição de escopo e estratégia de desenvolvimento para clientes de diferentes setores, com repertório em indústria, varejo e financeiro.",
+    latestTitle: "Último artigo no Substack",
     latestLoading: "Carregando artigo mais recente...",
-    latestUnavailable: "Nao foi possivel carregar o artigo agora.",
+    latestUnavailable: "Não foi possível carregar o artigo agora.",
     latestRead: "Ler artigo",
     socialTitle: "Canais de contato",
     socialVisit: "Acessar",
-    aiNote: "Pagina criada com IA Codex GPT-5.3."
+    tickerLead: "Produto, estratégia, execução e comunicação sem ruído.",
+    aiNote: "Layout experimental: três direções visuais disruptivas no mesmo portfolio."
   },
   es: {
     languageLabel: "Idioma",
+    designLabel: "Modo visual",
     heroTitle: "ENZO BONOMI",
-    // heroBody:
-    //   "Soy Enzo. Me gusta tomar ideas desordenadas, convertirlas en productos que funcionan y compartir lo que aprendo en el camino. Prefiero una conversacion directa, sin personaje y sin formulas vacias.",
-    currentTitle: "Donde estoy ahora",
+    currentTitle: "Dónde estoy ahora",
     currentRolePrefix: "Analista de Proyectos en ",
     companyLabel: "UDS Tecnologia",
     currentDescription:
-      "Trabajo en la concepcion y discovery de proyectos digitales, alineando requisitos, estimaciones y direccion de producto con apoyo de IA.",
-    latestTitle: "Ultimo articulo en Substack",
-    latestLoading: "Cargando el articulo mas reciente...",
-    latestUnavailable: "No se pudo cargar el articulo ahora.",
-    latestRead: "Leer articulo",
+      "Actúo en ideación, alcance y estrategia de desarrollo para clientes de distintos sectores, con experiencia en industria, retail y finanzas.",
+    latestTitle: "Último artículo en Substack",
+    latestLoading: "Cargando el artículo más reciente...",
+    latestUnavailable: "No se pudo cargar el artículo ahora.",
+    latestRead: "Leer artículo",
     socialTitle: "Canales de contacto",
     socialVisit: "Abrir",
-    aiNote: "Pagina criada com IA Codex GPT-5.3."
+    tickerLead: "Producto, estrategia, ejecución y comunicación sin ruido.",
+    aiNote: "Layout experimental: tres direcciones visuales disruptivas en el mismo portfolio."
   },
   en: {
     languageLabel: "Language",
+    designLabel: "Visual mode",
     heroTitle: "ENZO BONOMI",
-    // heroBody:
-    //   "I am Enzo. I like taking messy ideas, turning them into products that actually work, and sharing what I learn along the way. I prefer direct communication, no persona, no empty frameworks.",
     currentTitle: "Where I am now",
     currentRolePrefix: "Project Analyst at ",
     companyLabel: "UDS Tecnologia",
     currentDescription:
-      "I work on conception and discovery for digital projects, aligning requirements, estimates, and product direction with AI support.",
+      "I work on ideation, scope definition, and delivery strategy for clients across multiple industries, with experience in industrial, retail, and financial sectors.",
     latestTitle: "Latest Substack article",
     latestLoading: "Loading the latest article...",
     latestUnavailable: "Could not load the article right now.",
     latestRead: "Read article",
     socialTitle: "Contact channels",
     socialVisit: "Visit",
-    aiNote: "Pagina criada com IA Codex GPT-5.3."
+    tickerLead: "Product, strategy, execution, and communication with zero noise.",
+    aiNote: "Experimental layout: three disruptive visual directions in one portfolio."
   }
 };
 
-const localeButtons: Array<{ key: Locale; label: string }> = [
-  { key: "pt-BR", label: "PT-BR" },
-  { key: "es", label: "ES" },
-  { key: "en", label: "EN" }
+const localeButtons: Array<{ key: Locale; label: string; flag: string }> = [
+  { key: "pt-BR", label: "PT", flag: "BR" },
+  { key: "es", label: "ES", flag: "ES" },
+  { key: "en", label: "EN", flag: "US" }
 ];
+
+const modeButtons: Array<{ key: DesignMode; label: string }> = [
+  { key: "brutalist", label: "Brutalist Grid" },
+  { key: "signal", label: "Signal Room" },
+  { key: "paper", label: "Paper Clash" }
+];
+
+const themeByMode: Record<DesignMode, ThemeVars> = {
+  brutalist: {
+    "--page-bg": "#070707",
+    "--panel-bg": "#101010",
+    "--text-main": "#f8f8f3",
+    "--text-muted": "#cfcec4",
+    "--line": "#f4eb41",
+    "--line-soft": "#333333",
+    "--accent": "#ff4d1f",
+    "--accent-soft": "#243fff",
+    "--chip-bg": "#141414",
+    "--chip-active-bg": "#f4eb41",
+    "--chip-active-text": "#0b0b0b",
+    "--hero-shadow": "#ff4d1f"
+  },
+  signal: {
+    "--page-bg": "#030d12",
+    "--panel-bg": "#071923",
+    "--text-main": "#e7feff",
+    "--text-muted": "#a3c0cb",
+    "--line": "#31ffb7",
+    "--line-soft": "#17506a",
+    "--accent": "#49d1ff",
+    "--accent-soft": "#beff23",
+    "--chip-bg": "#0d2431",
+    "--chip-active-bg": "#31ffb7",
+    "--chip-active-text": "#01271b",
+    "--hero-shadow": "#31ffb7"
+  },
+  paper: {
+    "--page-bg": "#f8f0de",
+    "--panel-bg": "#fff9ed",
+    "--text-main": "#18110f",
+    "--text-muted": "#5b4a43",
+    "--line": "#2f3dbf",
+    "--line-soft": "#b58f7f",
+    "--accent": "#ff6b2c",
+    "--accent-soft": "#1e8f64",
+    "--chip-bg": "#f2e7d0",
+    "--chip-active-bg": "#2f3dbf",
+    "--chip-active-text": "#f4f2ff",
+    "--hero-shadow": "#ff6b2c"
+  }
+};
 
 const allowedSocialLabels = new Set(["Substack", "LinkedIn", "Twitter / X", "YouTube"]);
 
@@ -106,11 +161,14 @@ function formatArticleDate(dateISO: string, locale: Locale): string {
 
 export function FinalPortfolio() {
   const [locale, setLocale] = useState<Locale>("pt-BR");
+  const [mode, setMode] = useState<DesignMode>("brutalist");
   const [latestPost, setLatestPost] = useState<LatestSubstackPost | null>(null);
   const [isLoadingPost, setIsLoadingPost] = useState<boolean>(true);
   const [postLoadFailed, setPostLoadFailed] = useState<boolean>(false);
 
   const t = useMemo(() => copyByLocale[locale], [locale]);
+  const themeVars = useMemo(() => themeByMode[mode], [mode]);
+  const tickerText = `${t.tickerLead} ${t.heroTitle} ${t.tickerLead}`;
 
   useEffect(() => {
     let isMounted = true;
@@ -150,12 +208,32 @@ export function FinalPortfolio() {
   }, []);
 
   return (
-    <main className="final-paper min-h-screen bg-[#0c121d] text-[#f4efe6]">
-      <section className="mx-auto w-full max-w-6xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
-        <header className="mb-10 flex justify-end">
-          <div className="rounded-2xl border border-[#f0c96f] bg-[#111a2b] p-2">
-            <p className="mb-2 px-2 font-[Syne] text-[10px] uppercase tracking-[0.2em] text-[#d9bd87]">{t.languageLabel}</p>
-            <div className="flex gap-2">
+    <main
+      style={themeVars}
+      className="relative min-h-screen overflow-hidden bg-[var(--page-bg)] text-[var(--text-main)] [transition:background-color_360ms_ease,color_360ms_ease]"
+    >
+      <style>{`
+        @keyframes tickerX {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        @keyframes floatY {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+      `}</style>
+
+      <div className="pointer-events-none absolute inset-0 opacity-60">
+        <div className="absolute -left-16 top-10 h-56 w-56 rounded-full bg-[var(--accent)] blur-[80px]" />
+        <div className="absolute -right-20 bottom-16 h-64 w-64 rounded-full bg-[var(--accent-soft)] blur-[90px]" />
+      </div>
+
+      <section className="relative mx-auto w-full max-w-7xl px-4 pb-14 pt-8 sm:px-6 lg:px-8">
+        <header className="mb-10 grid gap-4 border-2 border-[var(--line)] bg-[var(--panel-bg)] p-4 shadow-[10px_10px_0_var(--line-soft)] lg:grid-cols-2">
+          <div>
+            <p className="mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--text-muted)]">{t.languageLabel}</p>
+            <div className="flex flex-wrap gap-2">
               {localeButtons.map((item) => {
                 const active = locale === item.key;
                 return (
@@ -164,10 +242,37 @@ export function FinalPortfolio() {
                     type="button"
                     onClick={() => setLocale(item.key)}
                     aria-pressed={active}
-                    className={`rounded-full border px-3 py-1 font-[Kanit] text-xs font-semibold uppercase tracking-[0.09em] transition ${
+                    className={`border px-3 py-1 text-xs font-semibold uppercase tracking-[0.11em] transition ${
                       active
-                        ? "border-[#f0c96f] bg-[#f0c96f] text-[#111a2b]"
-                        : "border-[#3a4a66] bg-[#0f1829] text-[#d1d8e8] hover:border-[#f0c96f] hover:text-[#f0c96f]"
+                        ? "border-[var(--line)] bg-[var(--chip-active-bg)] text-[var(--chip-active-text)]"
+                        : "border-[var(--line-soft)] bg-[var(--chip-bg)] text-[var(--text-main)] hover:border-[var(--line)]"
+                    }`}
+                  >
+                    <span aria-hidden="true" className="mr-1.5">
+                      {item.flag}
+                    </span>
+                    <span>{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <p className="mb-2 text-[10px] uppercase tracking-[0.24em] text-[var(--text-muted)]">{t.designLabel}</p>
+            <div className="flex flex-wrap gap-2">
+              {modeButtons.map((item) => {
+                const active = mode === item.key;
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => setMode(item.key)}
+                    aria-pressed={active}
+                    className={`border px-3 py-1 text-xs font-semibold uppercase tracking-[0.11em] transition ${
+                      active
+                        ? "border-[var(--line)] bg-[var(--chip-active-bg)] text-[var(--chip-active-text)]"
+                        : "border-[var(--line-soft)] bg-[var(--chip-bg)] text-[var(--text-main)] hover:border-[var(--line)]"
                     }`}
                   >
                     {item.label}
@@ -178,70 +283,89 @@ export function FinalPortfolio() {
           </div>
         </header>
 
-        <section className="grid items-center gap-7 border border-[#32415d] bg-[#0f1829] p-6 sm:p-8 lg:grid-cols-12">
-          <div className="lg:col-span-8">
-            <h1 className="font-[Bodoni_Moda] text-[clamp(2.5rem,8vw,5.8rem)] leading-[0.9] tracking-tight text-[#f6efe2]">{t.heroTitle}</h1>
-            {/* <p className="mt-5 max-w-4xl border-l-4 border-[#f0c96f] pl-4 font-[Epilogue] text-[1.02rem] leading-relaxed text-[#d8dfec]">{t.heroBody}</p> */}
+        <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="relative border-2 border-[var(--line)] bg-[var(--panel-bg)] p-5 shadow-[10px_10px_0_var(--line-soft)]">
+            <p className="mb-3 inline-block border border-[var(--line-soft)] bg-[var(--chip-bg)] px-2 py-1 text-[10px] uppercase tracking-[0.22em] text-[var(--text-muted)]">
+              Product + Delivery + Communication
+            </p>
+            <h1 className="text-[clamp(2.2rem,10vw,6rem)] font-black uppercase leading-[0.86] tracking-tight [text-shadow:6px_6px_0_var(--hero-shadow)]">
+              {t.heroTitle}
+            </h1>
+            <p className="mt-6 max-w-2xl border-l-4 border-[var(--accent)] pl-3 text-sm leading-relaxed text-[var(--text-muted)]">
+              {t.currentDescription}
+            </p>
           </div>
-          <div className="mx-auto w-full max-w-xs lg:col-span-4 lg:max-w-none">
-            <div className="border-2 border-[#f0c96f] bg-[#0b1322] p-2">
-              <img src="/assets/images/enzo-photo.png" alt="Enzo Bonomi" className="h-[320px] w-full object-cover" />
+
+          <div className="relative border-2 border-[var(--line)] bg-[var(--panel-bg)] p-3 shadow-[10px_10px_0_var(--line-soft)] [animation:floatY_5s_ease-in-out_infinite]">
+            <div className="-rotate-2 border border-[var(--accent)] bg-[var(--page-bg)] p-2 sm:-rotate-3">
+              <img src="/assets/images/enzo-photo.png" alt="Enzo Bonomi" className="h-[360px] w-full object-cover object-top" />
             </div>
+            <span className="absolute -bottom-3 right-4 border border-[var(--line)] bg-[var(--chip-active-bg)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--chip-active-text)]">
+              Live Profile
+            </span>
           </div>
         </section>
 
-        <section className="mt-8 border border-[#32415d] bg-[#101c31] p-6 sm:p-8">
-          <h2 className="font-[Syne] text-xs uppercase tracking-[0.24em] text-[#d8bd89]">{t.currentTitle}</h2>
-          <p className="mt-3 font-[Kanit] text-xl uppercase tracking-[0.04em] text-[#f4efe6]">
-            {t.currentRolePrefix}
-            <a
-              href="https://uds.com.br"
-              target="_blank"
-              rel="noreferrer"
-              className="underline decoration-2 underline-offset-4 transition hover:text-[#f0c96f]"
-            >
-              {t.companyLabel}
-            </a>
-          </p>
-          <p className="mt-3 max-w-4xl font-[Epilogue] text-[0.98rem] leading-relaxed text-[#d2dbec]">{t.currentDescription}</p>
+        <section className="mt-8 overflow-hidden border-y-2 border-[var(--line)] bg-[var(--panel-bg)] py-2">
+          <div className="flex w-[200%] [animation:tickerX_18s_linear_infinite]">
+            <p className="w-1/2 whitespace-nowrap px-4 text-xs uppercase tracking-[0.22em] text-[var(--accent)]">{tickerText}</p>
+            <p className="w-1/2 whitespace-nowrap px-4 text-xs uppercase tracking-[0.22em] text-[var(--accent)]">{tickerText}</p>
+          </div>
         </section>
 
-        <section className="mt-8 border border-[#32415d] bg-[#101c31] p-6 sm:p-8">
-          <h2 className="font-[Syne] text-xs uppercase tracking-[0.24em] text-[#d8bd89]">{t.latestTitle}</h2>
-
-          {isLoadingPost && <p className="mt-3 font-[Epilogue] text-sm text-[#d2dbec]">{t.latestLoading}</p>}
-
-          {!isLoadingPost && postLoadFailed && <p className="mt-3 font-[Epilogue] text-sm text-[#d2dbec]">{t.latestUnavailable}</p>}
-
-          {!isLoadingPost && latestPost && (
-            <article className="mt-4 border border-[#4b607f] bg-[#13203a] p-4">
+        <section className="mt-8 grid gap-6 lg:grid-cols-12">
+          <article className="border-2 border-[var(--line)] bg-[var(--panel-bg)] p-5 shadow-[10px_10px_0_var(--line-soft)] lg:col-span-5">
+            <h2 className="text-xs uppercase tracking-[0.22em] text-[var(--text-muted)]">{t.currentTitle}</h2>
+            <p className="mt-3 text-xl font-extrabold uppercase tracking-[0.05em]">
+              {t.currentRolePrefix}
               <a
-                href={latestPost.url}
+                href="https://uds.com.br"
                 target="_blank"
                 rel="noreferrer"
-                className="font-[Kanit] text-lg font-semibold uppercase tracking-[0.03em] text-[#f4efe6] transition hover:text-[#f0c96f]"
+                className="underline decoration-[3px] underline-offset-4 transition hover:text-[var(--accent)]"
               >
-                {latestPost.title}
+                {t.companyLabel}
               </a>
-              <p className="mt-1 font-[Syne] text-[11px] uppercase tracking-[0.15em] text-[#b9c5db]">
-                {formatArticleDate(latestPost.dateISO, locale)}
-              </p>
-              <p className="mt-3 font-[Epilogue] text-sm leading-relaxed text-[#dde4f1]">{latestPost.description}</p>
-              <a
-                href={latestPost.url}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-block border border-[#f0c96f] px-3 py-1 font-[Kanit] text-xs font-semibold uppercase tracking-[0.08em] text-[#f0c96f] transition hover:bg-[#f0c96f] hover:text-[#111a2b]"
-              >
-                {t.latestRead}
-              </a>
-            </article>
-          )}
+            </p>
+          </article>
+
+          <article className="border-2 border-[var(--line)] bg-[var(--panel-bg)] p-5 shadow-[10px_10px_0_var(--line-soft)] lg:col-span-7">
+            <h2 className="text-xs uppercase tracking-[0.22em] text-[var(--text-muted)]">{t.latestTitle}</h2>
+
+            {isLoadingPost && <p className="mt-3 text-sm text-[var(--text-muted)]">{t.latestLoading}</p>}
+
+            {!isLoadingPost && postLoadFailed && <p className="mt-3 text-sm text-[var(--text-muted)]">{t.latestUnavailable}</p>}
+
+            {!isLoadingPost && latestPost && (
+              <article className="mt-4 border border-[var(--line-soft)] bg-[var(--page-bg)] p-4">
+                <a
+                  href={latestPost.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-lg font-extrabold uppercase tracking-[0.03em] transition hover:text-[var(--accent)]"
+                >
+                  {latestPost.title}
+                </a>
+                <p className="mt-1 text-[11px] uppercase tracking-[0.15em] text-[var(--text-muted)]">
+                  {formatArticleDate(latestPost.dateISO, locale)}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--text-muted)]">{latestPost.description}</p>
+                <a
+                  href={latestPost.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-block border border-[var(--line)] bg-[var(--chip-bg)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] transition hover:bg-[var(--chip-active-bg)] hover:text-[var(--chip-active-text)]"
+                >
+                  {t.latestRead}
+                </a>
+              </article>
+            )}
+          </article>
         </section>
 
-        <section className="mt-8 border border-[#32415d] bg-[#101c31] p-6 sm:p-8">
-          <h2 className="font-[Syne] text-xs uppercase tracking-[0.24em] text-[#d8bd89]">{t.socialTitle}</h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <section className="mt-8 border-2 border-[var(--line)] bg-[var(--panel-bg)] p-5 shadow-[10px_10px_0_var(--line-soft)]">
+          <h2 className="text-xs uppercase tracking-[0.22em] text-[var(--text-muted)]">{t.socialTitle}</h2>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {profile.socials
               .filter((social) => allowedSocialLabels.has(social.label))
               .map((social) => (
@@ -250,19 +374,20 @@ export function FinalPortfolio() {
                   href={social.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-between border border-[#f0c96f] bg-[#13203a] px-3 py-2 font-[Kanit] text-sm font-semibold uppercase tracking-[0.07em] text-[#f4efe6] transition hover:bg-[#f0c96f] hover:text-[#111a2b]"
+                  className="group flex items-center justify-between border border-[var(--line-soft)] bg-[var(--chip-bg)] px-3 py-2 text-sm font-semibold uppercase tracking-[0.08em] transition hover:-translate-y-1 hover:border-[var(--line)] hover:bg-[var(--chip-active-bg)] hover:text-[var(--chip-active-text)]"
                 >
                   <span>{social.label}</span>
-                  <span>{t.socialVisit}</span>
+                  <span className="opacity-70 transition group-hover:opacity-100">{t.socialVisit}</span>
                 </a>
               ))}
           </div>
         </section>
 
-        <footer className="mt-10 border-t border-[#32415d] pt-5">
-          <p className="font-[Kanit] text-sm text-[#d2dbec]">{t.aiNote}</p>
+        <footer className="mt-10 border-t-2 border-[var(--line-soft)] pt-5">
+          <p className="text-sm uppercase tracking-[0.1em] text-[var(--text-muted)]">{t.aiNote}</p>
         </footer>
       </section>
     </main>
   );
 }
+

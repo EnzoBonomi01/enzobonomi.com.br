@@ -1,4 +1,4 @@
-export type LatestSubstackPost = {
+﻿export type LatestSubstackPost = {
   title: string;
   url: string;
   dateISO: string;
@@ -14,11 +14,11 @@ type SubstackPostResponse = {
 };
 
 const FALLBACK_POST: LatestSubstackPost = {
-  title: "Ideacao e validacao de produto - palestra completa",
+  title: "Ideação e validação de produto - palestra completa",
   url: "https://enzobonomi.substack.com/p/ideacao-e-validacao-de-produto-palestra",
   dateISO: "2025-11-07T01:06:40.912Z",
   description:
-    "Ontem tive o prazer de palestrar na semana academica da faculdade de Senac, em Maringa, para a turma do curso de analise e desenvolvimento de sistemas."
+    "Ontem tive o prazer de palestrar na semana acadêmica da faculdade de Senac, em Maringá, para a turma do curso de análise e desenvolvimento de sistemas."
 };
 
 const SUBSTACK_SOURCE_URL = "https://enzobonomi.substack.com/api/v1/posts?limit=1";
@@ -54,4 +54,3 @@ export async function fetchLatestSubstackPost(): Promise<LatestSubstackPost | nu
     return FALLBACK_POST;
   }
 }
-
