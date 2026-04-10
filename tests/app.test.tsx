@@ -1,43 +1,38 @@
-﻿import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import App from '../src/App';
 
 describe('landing experience', () => {
-  it('starts in EN with the digital brutalism landing as the default version', () => {
+  it('renders the digital brutalism landing in English by default', () => {
     render(<App />);
 
-    expect(screen.getByText('Product, strategy, technology, and execution.')).toBeInTheDocument();
     expect(screen.getByTestId('landing-digital-brutalism')).toBeInTheDocument();
+    expect(screen.getByText('Product, strategy, and AI.')).toBeInTheDocument();
+    expect(screen.getByText('Loading latest article...')).toBeInTheDocument();
 
     const cta = screen.getAllByRole('link', { name: 'Reach on WhatsApp' })[0];
     expect(cta).toHaveAttribute('href', 'https://wa.me/5544988114314');
   });
 
-  it('supports full language switching', () => {
+  it('switches copy when the language changes', () => {
     render(<App />);
 
     fireEvent.change(screen.getByLabelText('Language'), { target: { value: 'pt-BR' } });
-    expect(screen.getByText('Produto, estratégia, execução e AI.')).toBeInTheDocument();
+    expect(screen.getByText('Produto, estratégia e IA.')).toBeInTheDocument();
+    expect(screen.getByText('Carregando último artigo...')).toBeInTheDocument();
 
     fireEvent.change(screen.getByLabelText('Idioma'), { target: { value: 'es' } });
-    expect(screen.getByText('Producto, estrategia, tecnología y ejecución.')).toBeInTheDocument();
+    expect(screen.getByText('Producto, estrategia e IA.')).toBeInTheDocument();
+    expect(screen.getByText('Cargando último artículo...')).toBeInTheDocument();
   });
 
-  it('supports switching to the signal cinema version', () => {
+  it('keeps the official outbound channels available', () => {
     render(<App />);
 
-    fireEvent.change(screen.getByLabelText('Version'), { target: { value: 'signal-cinema' } });
-
-    expect(screen.getByTestId('landing-signal-cinema')).toBeInTheDocument();
-    expect(screen.queryByTestId('landing-digital-brutalism')).not.toBeInTheDocument();
-  });
-
-  it('keeps the legacy raw tape version available from the selector', () => {
-    render(<App />);
-
-    fireEvent.change(screen.getByLabelText('Version'), { target: { value: 'raw-tape' } });
-
-    expect(screen.getByTestId('landing-raw-tape')).toBeInTheDocument();
-    expect(screen.queryByTestId('landing-digital-brutalism')).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'LinkedIn profile' })).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/in/enzobonomi/'
+    );
+    expect(screen.getByRole('list', { name: 'Official channels' })).toBeInTheDocument();
   });
 });
