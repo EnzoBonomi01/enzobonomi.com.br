@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/top-controls.tsx","./src/content/site-content.ts","./src/hooks/use-latest-article.ts","./src/versions/digital-brutalism-landing.tsx","./src/versions/landing-props.ts","./tests/app.test.tsx","./tests/setup.ts"],"version":"5.8.3"}
