@@ -1,0 +1,14 @@
+{
+  "name": "enzobonomi/site",
+  "description": "Static landing page for enzobonomi.com.br",
+  "type": "project",
+  "require": {},
+  "scripts": {
+    "post-install-cmd": [
+      "@php -r \"file_exists('index.php') || copy('index.html', 'index.php');\""
+    ],
+    "post-update-cmd": [
+      "@php -r \"file_exists('index.php') || copy('index.html', 'index.php');\""
+    ]
+  }
+}
