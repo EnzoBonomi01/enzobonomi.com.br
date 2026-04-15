@@ -1,6 +1,0 @@
-node_modules/
-temp/
-coverage/
-*.tsbuildinfo
-vite.config.js
-vite.config.d.ts
