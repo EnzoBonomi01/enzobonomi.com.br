@@ -1,0 +1,32 @@
+/* O kanban das sessões (o elemento mantido do teste 4). Cada página ajusta as variáveis. */
+.kb {
+  --kb-col: #dfe7e5; --kb-card: #ffffff; --kb-ink: #0d1f1e; --kb-soft: #4b5c5a;
+  --kb-sessao-bg: #d7ebe6; --kb-sessao: #0c4a43; --kb-opc-bg: #fde6c4; --kb-opc: #7a4705;
+  --kb-fim-bg: #0c4a43; --kb-fim: #e3f4ef; --kb-gap: 12px; --kb-r: 12px;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--kb-gap);
+  color: var(--kb-ink); font-family: "Chivo", system-ui, sans-serif; position: relative;
+}
+.kb__col { background: var(--kb-col); border-radius: var(--kb-r); padding: 12px; min-height: 280px; }
+.kb__col h3 { display: flex; justify-content: space-between; margin: 2px 4px 12px; font: 600 .78rem/1.2 "Chivo", sans-serif; text-transform: uppercase; letter-spacing: .07em; color: var(--kb-soft); }
+.kb__col h3 span { font-family: "Chivo Mono", monospace; letter-spacing: 0; }
+.kb__card { background: var(--kb-card); border-radius: 8px; padding: 12px; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(13,31,30,.08); transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s; }
+.kb__card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(13,31,30,.12); }
+.kb__chip { display: inline-block; font: 600 .74rem/1 "Chivo", sans-serif; border-radius: 4px; padding: 4px 6px; background: var(--kb-sessao-bg); color: var(--kb-sessao); }
+.kb__chip--opc { background: var(--kb-opc-bg); color: var(--kb-opc); }
+.kb__chip--fim { background: var(--kb-fim-bg); color: var(--kb-fim); }
+.kb__card h4 { margin: 8px 0 6px; font: 600 1rem/1.3 "Chivo", sans-serif; color: var(--kb-ink); }
+.kb__card p { margin: 0; font-size: .9rem; line-height: 1.5; color: var(--kb-soft); }
+.kb__pe { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; font: .78rem "Chivo Mono", monospace; color: var(--kb-soft); }
+.kb__pe img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+@media (max-width: 1023px) { .kb { grid-template-columns: repeat(2, minmax(0, 1fr)); } .kb__col:last-child { grid-column: 1 / -1; } .kb__col { min-height: 0; } }
+@media (max-width: 639px) { .kb { grid-template-columns: 1fr; } }
+/* no celular o board empilha: as descrições saem, o título e a semana ficam */
+@media (max-width: 639px) { .kb__card p { display: none; } .kb__card h4 { margin-bottom: 0; } }
+/* "Você": o marcador que atravessa o board do diagnóstico à proposta (o elemento do teste 4) */
+.kb:has(.kb__voce) { container-type: inline-size; margin-top: 48px; }
+.kb__voce { position: absolute; top: -40px; left: 12px; z-index: 2; display: flex; align-items: center; gap: 6px; background: #0d1f1e; color: #fff; font: 600 .82rem/1 "Chivo", sans-serif; padding: 6px 12px 6px 6px; border-radius: 999px; pointer-events: none; box-shadow: 0 4px 12px rgba(13,31,30,.18); }
+.kb__voce i { width: 20px; height: 20px; border-radius: 50%; background: #fff; display: block; }
+.kb.is-andando .kb__voce { animation: kb-andar 2.6s cubic-bezier(.65,0,.35,1) .3s both; }
+@keyframes kb-andar { from { transform: translateX(0); } to { transform: translateX(calc(80cqw + .8 * var(--kb-gap))); } }
+@media (max-width: 1023px) { .kb:has(.kb__voce) { margin-top: 0; } .kb__voce { display: none; } }
+@media (prefers-reduced-motion: reduce) { .kb.is-andando .kb__voce { animation: none; transform: translateX(calc(80cqw + .8 * var(--kb-gap))); } }

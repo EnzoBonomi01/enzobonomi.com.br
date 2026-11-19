@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR" data-type="service" data-radius="soft" data-buttons="arrow" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mentoria para vaga remota lá fora</title>
+<meta name="description" content="Mentoria 1:1 de Enzo Bonomi para quem trabalha com tecnologia e produto e quer uma vaga remota numa empresa de fora. 6 sessões em 8 semanas.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mentoria para vaga remota lá fora">
+<meta property="og:description" content="Mentoria 1:1 para BAs, PMs, POs, QA, marketing, suporte, infra, DevOps e financeiro.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#eef2f1">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;600&family=Chivo+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit/system.css">
+<link rel="stylesheet" href="../kit/ui/cards.css">
+<link rel="stylesheet" href="../kit/motion/motion.css">
+<link rel="stylesheet" href="../kit/layout/layout.css">
+<link rel="stylesheet" href="../shared/kanban.css?v=3">
+<link rel="stylesheet" href="../shared/giro.css?v=4">
+<style>
+:root {
+  --p-bg: #eef2f1; --p-surface: #dfe7e5; --p-ink: #0d1f1e; --p-muted: #5a6766;
+  --p-accent: #f0a43a; --p-accent-ink: #111111; --p-action: #0c4a43; --p-action-ink: #eef2f1;
+  --p-inv-bg: #0c4a43; --p-inv-surface: #13574f; --p-inv-ink: #e3f4ef; --p-inv-muted: #a9cbc4;
+  --p-inv-accent: #f0a43a; --p-inv-accent-ink: #111111; --p-inv-action: #f0a43a; --p-inv-action-ink: #111111;
+  --font-display: "Chivo", system-ui, sans-serif;
+  --font-text: "Chivo", system-ui, sans-serif;
+  --display-weight: 500;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.04em;
+}
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="../kit/moments/moments.js">
+<link rel="modulepreload" href="../kit/moments/lib.js">
+<link rel="modulepreload" href="../kit/moments/picture-develops/moment.js">
+<style>
+  .num { font-family: "Chivo Mono", monospace; font-weight: 300; font-variant-numeric: tabular-nums; }
+  .hero--word .giro-pausa { margin-left: var(--s-3); width: 44px; height: 44px; }
+  .rows__value { font-family: "Chivo Mono", monospace; }
+  .span-5 > .rows, #precos .rows { margin-top: var(--s-6); }
+  .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
+  .develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(560px, var(--ly-fit, 560px)); }
+  .develop > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  @media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+.sub-lista { margin: 10px 0 0; padding-left: 1.2em; } .sub-lista li { margin: 3px 0; }
+.h1-centro { text-align: center; margin-left: auto; margin-right: auto; } .h1-linha { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; text-align: center; margin: 12px 0 0; } .hero--word .h1-linha { font-weight: 600; font-size: clamp(1.4rem, 2.6vw, 2.2rem); margin-bottom: var(--s-6); }
+</style>
+</head>
+<body>
+<!-- type: service
+     deal: hero word (the live word is the brief's "É pra ___"), nav nav-mega, close close-type, footer footer-columns,
+     rhythm space, buttons arrow, mark arc, grounds none
+     palette: the client's pinned palette (teal #0c4a43, amber #f0a43a, #eef2f1), type pinned: Chivo / Chivo Mono
+     moments: picture-develops in #precos -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Pular para o conteúdo</a>
+    <a class="nav__logo" href="#top"><span class="mark" data-mark="arc" aria-hidden="true"></span>Enzo Bonomi</a>
+    <nav class="nav__links" aria-label="Principal">
+      <div class="nav__item">
+        <a class="nav__link" href="#precos">Preços <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <div class="menu-col span-3">
+              <p class="t-label">Mentoria</p>
+              <a href="#precos">Mentoria<span>6 sessões em 8 semanas</span></a>
+              <a href="#precos">Com entrevista em inglês<span>3 simulações gravadas</span></a>
+            </div>
+            <div class="menu-col span-3">
+              <p class="t-label">Para começar</p>
+              <a href="#precos">Diagnóstico<span>1 sessão e plano de 30 dias</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="#sessoes">Sessões</a></div>
+      <div class="nav__item"><a class="nav__link" href="#inscricao">Inscrição</a></div>
+    </nav>
+    <div class="nav__actions"><a class="btn btn--primary" href="#inscricao">Fazer inscrição</a></div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero hero--word" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text hero__in">
+      <h1 id="hero-h" class="h1-centro">Conquiste sua vaga na gringa</h1>
+      <p class="h1-linha" data-giro-raiz aria-label="Mentoria de carreira para BA, PM, PO, QA, marketing, suporte, infra, DevOps e financeiro."><span aria-hidden="true">Mentoria de carreira para <span class="giro" data-giro>BA</span></span></p>
+      <div class="grid hero__foot">
+        <div class="span-6">
+          <p class="hero__lead">Mentoria 1:1 com quem fez esse caminho sem ser DEV:</p>
+          <ul class="sub-lista">
+            <li>Diagnóstico de perfil: cargo-alvo, tipo de empresa e nível de inglês</li>
+            <li>Currículo e LinkedIn em inglês, focados em resultado</li>
+            <li>Treinamento de inglês corporativo com feedback a cada sessão</li>
+            <li>Simulação de entrevistas com vagas reais para treinar</li>
+            <li>Como encontrar empresas que contratam brasileiros</li>
+            <li>Plano para 8 semanas: busca, certificações, treino</li>
+            <li>O que esperar dos primeiros meses: cultura, trabalho assíncrono e onboarding</li>
+            <li>Suporte pelo WhatsApp entre as sessões</li>
+          </ul>
+          <div class="btn-row"><a class="btn btn--primary" href="#inscricao">Fazer inscrição<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#precos">Ver os preços</a></div>
+        </div>
+        <dl class="hero__facts hero__facts--col span-5 start-8">
+          <div><dt>Primeira turma</dt><dd><span class="num">5</span> vagas</dd></div>
+          <div><dt>Início</dt><dd class="num">12/01/2027</dd></div>
+          <div><dt>Mentoria</dt><dd class="num">R$ 1.190</dd></div>
+          <div><dt>Garantia</dt><dd><span class="num">100%</span> em <span class="num">90</span> dias</dd></div>
+        </dl>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section" id="sessoes" style="--hm: 2" aria-labelledby="sessoes-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="sessoes-h">As 6 sessões, do diagnóstico à proposta</h2><p>60 minutos cada, por chamada de vídeo, com suporte pelo WhatsApp nas 8 semanas.</p></div>
+      <div class="kb" role="list" aria-label="Sessões da mentoria">
+        <span class="kb__voce" aria-hidden="true"><i></i>Você</span>
+        <div class="kb__col" role="listitem"><h3>Diagnóstico <span>1</span></h3>
+          <article class="kb__card"><span class="kb__chip">Sessão 1</span><h4>Definir cargo-alvo e plano</h4><p>Que vaga, que tipo de empresa, onde está o seu inglês.</p><div class="kb__pe"><span>Semana 1</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+        </div>
+        <div class="kb__col" role="listitem"><h3>Posicionamento <span>2</span></h3>
+          <article class="kb__card"><span class="kb__chip">Sessão 2</span><h4>Currículo internacional</h4><p>Em inglês, focado em resultado.</p><div class="kb__pe"><span>Semana 2</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+          <article class="kb__card"><span class="kb__chip">Sessão 3</span><h4>LinkedIn em inglês</h4><p>Pra recrutador de fora te achar.</p><div class="kb__pe"><span>Semana 3</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+        </div>
+        <div class="kb__col" role="listitem"><h3>Busca <span>1</span></h3>
+          <article class="kb__card"><span class="kb__chip">Sessão 4</span><h4>Estratégia de busca</h4><p>Empresas, consultorias, plataformas e como abordar recrutadores.</p><div class="kb__pe"><span>Semana 4</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+        </div>
+        <div class="kb__col" role="listitem"><h3>Seleção <span>2</span></h3>
+          <article class="kb__card"><span class="kb__chip">Sessão 5</span><h4>Simular o processo seletivo</h4><p>Entrevista comportamental e da função, com feedback.</p><div class="kb__pe"><span>Semana 6</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+          <article class="kb__card"><span class="kb__chip kb__chip--opc">Módulo opcional</span><h4>Entrevista em inglês</h4><p>3 simulações gravadas, com feedback escrito.</p></article>
+        </div>
+        <div class="kb__col" role="listitem"><h3>Proposta <span>1</span></h3>
+          <article class="kb__card"><span class="kb__chip kb__chip--fim">Sessão 6</span><h4>Avaliar proposta e contrato</h4><p>PJ ou contractor, câmbio, como receber e os primeiros meses.</p><div class="kb__pe"><span>Semana 8</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="precos" aria-labelledby="precos-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-5">
+          <h2 id="precos-h">Preços da primeira turma</h2>
+          <p>Pix ou cartão em até <span class="num">3x</span> sem juros. Se no fim você não ficar satisfeito, devolvo 100% até 90 dias depois da última sessão.</p>
+          <ul class="rows">
+            <li><span class="rows__name">Diagnóstico<small>1 sessão, revisão de currículo e LinkedIn, plano de 30 dias. Abatido se você entrar na mentoria em até 30 dias.</small></span><span class="rows__value">R$ 297</span></li>
+            <li><span class="rows__name">Mentoria<small>As 6 sessões e o suporte. Depois R$ 1.760.</small></span><span class="rows__value">R$ 1.190</span></li>
+            <li><span class="rows__name">Entrevista em inglês<small>3 simulações gravadas, com feedback escrito. Depois R$ 640.</small></span><span class="rows__value">R$ 490</span></li>
+            <li><span class="rows__name">Mentoria + Entrevista em inglês<small>Tudo junto, nas mesmas 8 semanas. Depois R$ 2.240.</small></span><span class="rows__value">R$ 1.590</span></li>
+          </ul>
+        </div>
+        <figure class="develop span-6 start-7" data-moment="picture-develops"><img src="../../assets/images/profile-photo.jpg" alt="Enzo Bonomi sorrindo, de óculos e camisa branca" width="900" height="900" loading="lazy" data-source="client" data-subject="Enzo Bonomi"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="inscricao" aria-labelledby="inscricao-h">
+    <div class="wrap">
+      <div class="grid grid--top">
+        <div class="span-5"><h2 id="inscricao-h">Inscrição</h2><p>Preencha e envie. A mensagem abre no meu WhatsApp, e eu te respondo por lá.</p><p class="t-small muted">Sou Enzo Bonomi, Senior Business Analyst na DataArt. Trabalho remoto do Brasil para um cliente americano do setor financeiro, e não sou dev. Uma recrutadora me achou pelo LinkedIn. Tenho C1 Advanced e fui mentor voluntário de inglês na Soul Bilíngue.</p></div>
+        <form class="form span-6 start-7" data-inscricao data-fix="{n} campo(s) para corrigir." novalidate>
+          <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required aria-describedby="nome-erro"><p class="field__error" id="nome-erro" hidden>Escreva seu nome.</p></div>
+          <div class="field"><label for="whatsapp">WhatsApp</label><input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" required aria-describedby="whatsapp-erro"><p class="field__error" id="whatsapp-erro" hidden>Escreva seu WhatsApp com DDD.</p></div>
+          <div class="field"><label for="linkedin">Link do LinkedIn</label><input id="linkedin" name="linkedin" type="url" required aria-describedby="linkedin-erro"><p class="field__error" id="linkedin-erro" hidden>Cole o link do seu perfil.</p></div>
+          <div class="field"><label for="vaga">Que vaga você quer lá fora?</label><input id="vaga" name="vaga"></div>
+          <div class="field"><label for="ingles">Como está o seu inglês hoje?</label><textarea id="ingles" name="ingles"></textarea></div>
+          <div class="field"><label for="trava">O que mais te trava hoje?</label><textarea id="trava" name="trava"></textarea></div>
+          <div class="field"><label for="oferta">Qual oferta te interessa?</label><select id="oferta" name="oferta"><option>Ainda não sei</option><option>Diagnóstico</option><option>Mentoria</option><option>Mentoria + Entrevista em inglês</option><option>Entrevista em inglês</option></select></div>
+          <div class="btn-row"><button class="btn btn--primary" type="submit">Enviar pelo WhatsApp</button></div><p class="form__status" role="status" data-form-status></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head"><h2 id="close-h">Primeira turma: 5 vagas</h2><p>Inscrições de 1 a 14 de dezembro, início em 12 de janeiro de 2027.</p></div>
+      <a class="btn btn--primary btn--xl btn--wide" href="#inscricao">Fazer inscrição<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4"><a class="nav__logo" href="#top"><span class="mark" data-mark="arc" aria-hidden="true"></span>Enzo Bonomi</a><p class="footer__lede">Mentoria para vaga remota lá fora.</p></div>
+        <div class="span-2 footer__col"><h3>Preços</h3><ul><li><a href="#precos">Mentoria</a></li><li><a href="#precos">Diagnóstico</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Sessões</h3><ul><li><a href="#sessoes">As 6 sessões</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Sobre</h3><ul><li><a href="/">Site do Enzo</a></li></ul></div>
+        <div class="span-2 footer__col"><h3>Inscrição</h3><ul><li><a href="#inscricao">Formulário</a></li></ul></div>
+      </div>
+      <div class="footer__legal"><span>&copy; 2026 Enzo Bonomi</span><div class="socials"></div></div>
+    </div>
+  </div>
+</footer>
+<script type="module" src="../kit/system.js"></script>
+<script type="module" src="../kit/motion/motion.js"></script>
+<script type="module" src="../kit/layout/layout.js"></script>
+<script type="module" src="../shared/giro.js?v=4"></script>
+<script type="module" src="../shared/voce.js?v=3"></script>
+<script type="module" src="../shared/form.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentoria para vaga remota lá fora</title>
+<meta name="description" content="Mentoria 1:1 de Enzo Bonomi para quem trabalha com tecnologia e produto e quer uma vaga remota numa empresa de fora.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;500;700;900&family=Chivo+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/kanban.css?v=3">
+<link rel="stylesheet" href="../shared/giro.css?v=4">
+<style>
+:root { --palco: #082f2b; --teal: #0c4a43; --teal-2: #13574f; --teal-ink: #e3f4ef; --teal-suave: #9cc2ba; --ambar: #f0a43a; --ambar-ink: #2a1a04; --slide: #f7f9f8; --tinta: #0d1f1e; --suave: #4b5c5a; --linha: #d3dcda; }
+* { box-sizing: border-box; }
+html { scroll-snap-type: y proximity; scroll-padding-top: 24px; }
+body { margin: 0; background: var(--palco); color: var(--tinta); font: 400 1rem/1.55 "Chivo", sans-serif; padding: 24px 0 88px; }
+::selection { background: var(--ambar); color: var(--ambar-ink); }
+:focus-visible { outline: 3px solid var(--ambar); outline-offset: 3px; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* o deck */
+.slide { scroll-snap-align: start; width: min(1180px, calc(100% - 32px)); margin: 0 auto 28px; background: var(--slide); border-radius: 10px; box-shadow: 0 30px 70px -30px rgba(0,0,0,.6); display: flex; flex-direction: column; min-height: min(calc((100vw - 32px) * 9 / 16), 664px); overflow: hidden; }
+.slide__topo, .slide__pe { display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; font: .8rem "Chivo Mono", monospace; color: var(--suave); }
+.slide__pe { margin-top: auto; border-top: 1px solid var(--linha); }
+.slide__pe b { font-weight: 400; color: var(--tinta); }
+.slide__corpo { padding: 12px 64px 40px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.slide--teal { background: var(--teal); color: var(--teal-ink); }
+.slide--teal .slide__topo, .slide--teal .slide__pe { color: var(--teal-suave); border-color: rgba(227,244,239,.18); }
+.slide--teal .slide__pe b { color: var(--teal-ink); }
+.slide--ambar { background: var(--ambar); color: var(--ambar-ink); }
+.slide--ambar .slide__topo, .slide--ambar .slide__pe { color: #5c3d0b; border-color: rgba(42,26,4,.18); }
+h1 { font-weight: 900; font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: .98; letter-spacing: -.045em; margin: 0; max-width: 15ch; }
+.giro-linha { font-weight: 900; font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: 1.08; letter-spacing: -.045em; margin: 0; color: var(--ambar); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.giro-linha .giro { text-decoration-color: var(--ambar); }
+.giro-linha .giro-pausa { color: var(--teal-suave); }
+.capa__pe { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; margin-top: 40px; }
+.capa__pe p { margin: 0; max-width: 44ch; font-size: 1.12rem; color: #cfe6e0; }
+h2 { font-weight: 900; font-size: clamp(1.9rem, 3.6vw, 3rem); line-height: 1.02; letter-spacing: -.035em; margin: 0 0 10px; }
+.sub { margin: 0 0 28px; color: var(--suave); max-width: 60ch; font-size: 1.08rem; }
+.slide--teal .sub { color: #cfe6e0; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 8px; font: 700 1rem "Chivo"; text-decoration: none; cursor: pointer; border: 2px solid transparent; transition: background .2s, transform .2s; }
+.btn--ambar { background: var(--ambar); color: var(--ambar-ink); }
+.btn--ambar:hover { background: #f6b65a; }
+.btn--linha { border-color: rgba(227,244,239,.5); color: var(--teal-ink); }
+.btn--linha:hover { background: rgba(227,244,239,.08); }
+.btn--teal { background: var(--teal); color: var(--teal-ink); }
+.btn--teal:hover { background: var(--teal-2); }
+.btn:active { transform: translateY(1px); }
+
+/* slide 2: pra quem */
+.cargos { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 26px; padding: 0; list-style: none; }
+.cargos li { font-weight: 700; font-size: clamp(1.2rem, 2.2vw, 1.7rem); padding: 8px 16px; border: 2px solid var(--tinta); border-radius: 999px; }
+.cargos li.risco { text-decoration: line-through; text-decoration-thickness: 3px; color: var(--suave); border-style: dashed; border-color: var(--suave); }
+.dois { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 820px; }
+.dois div { border-top: 2px solid var(--tinta); padding-top: 10px; }
+.dois b { display: block; font-size: 1.05rem; }
+
+/* slide 4: investimento */
+.precos { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 2px solid var(--tinta); }
+.preco { padding: 16px 18px 18px 0; display: flex; flex-direction: column; gap: 6px; }
+.preco + .preco { padding-left: 18px; border-left: 1px solid var(--linha); }
+.preco h3 { margin: 0; font-size: 1.05rem; }
+.preco .valor { font: 300 clamp(2rem, 3.4vw, 2.8rem)/1 "Chivo Mono", monospace; letter-spacing: -.03em; margin-top: 6px; }
+.preco .depois { font: .82rem "Chivo Mono", monospace; color: var(--suave); }
+.preco p { margin: 6px 0 0; color: var(--suave); font-size: .95rem; }
+.rodape-preco { margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: "Chivo Mono", monospace; color: var(--suave); }
+
+/* slide 5: garantia */
+.garantia { font-weight: 900; font-size: clamp(2rem, 4.6vw, 4rem); line-height: 1.04; letter-spacing: -.04em; margin: 0; max-width: 20ch; }
+.garantia-sub { margin: 20px 0 0; font-size: 1.15rem; max-width: 46ch; }
+
+/* slide 6: quem apresenta */
+.apresenta { display: grid; grid-template-columns: 300px 1fr; gap: 48px; align-items: center; }
+.apresenta img { width: 300px; height: 300px; object-fit: cover; object-position: 50% 30%; border-radius: 10px; }
+.apresenta p { font-size: 1.15rem; max-width: 46ch; margin: 0 0 12px; }
+
+/* slide 7: inscrição */
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; max-width: 920px; }
+.form .cheia { grid-column: 1 / -1; }
+.form label { display: block; font-weight: 700; font-size: .92rem; margin-bottom: 4px; }
+.form input, .form textarea, .form select { width: 100%; font: 1rem "Chivo"; color: var(--tinta); border: 1.5px solid #b8c6c3; border-radius: 8px; padding: 11px 12px; background: #fff; }
+.form textarea { min-height: 64px; resize: vertical; }
+.form input:focus, .form textarea:focus, .form select:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(12,74,67,.18); }
+.erro { color: #a5281d; font-size: .85rem; margin: 4px 0 0; }
+
+/* controles do deck */
+.controle { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 10; display: flex; align-items: center; gap: 6px; background: rgba(4,26,23,.92); color: var(--teal-ink); border-radius: 999px; padding: 6px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.controle button { width: 44px; height: 44px; border-radius: 999px; border: 0; background: transparent; color: inherit; cursor: pointer; display: grid; place-items: center; }
+.controle button:hover { background: rgba(227,244,239,.1); }
+.controle svg { width: 16px; height: 16px; }
+.controle__n { font: .9rem "Chivo Mono", monospace; min-width: 64px; text-align: center; }
+.controle__barra { width: 120px; height: 4px; background: rgba(227,244,239,.18); border-radius: 4px; overflow: hidden; }
+.controle__barra i { display: block; height: 100%; background: var(--ambar); width: 14%; transition: width .35s cubic-bezier(.2,.8,.2,1); }
+.controle a { text-decoration: none; font-weight: 700; font-size: .92rem; background: var(--ambar); color: var(--ambar-ink); border-radius: 999px; padding: 0 16px; height: 44px; display: grid; place-items: center; }
+.kb { --kb-col: #e6ecea; }
+
+@media (max-width: 900px) {
+  .slide { min-height: 0; }
+  .slide__corpo { padding: 8px 22px 32px; }
+  .slide__topo, .slide__pe { padding: 12px 22px; }
+  .precos { grid-template-columns: 1fr 1fr; }
+  .preco:nth-child(3) { padding-left: 0; border-left: 0; }
+  .preco:nth-child(n+3) { border-top: 1px solid var(--linha); }
+  .apresenta { grid-template-columns: 1fr; }
+  .apresenta img { width: 100%; height: auto; aspect-ratio: 1; }
+  .controle__barra { display: none; }
+}
+@media (max-width: 600px) {
+  .precos { grid-template-columns: 1fr; }
+  .preco, .preco + .preco { padding: 14px 0; border-left: 0; border-top: 1px solid var(--linha); }
+  .dois, .form { grid-template-columns: 1fr; }
+  .controle a { display: none; }
+}
+.sub-lista { margin: 10px 0 0; padding-left: 1.2em; } .sub-lista li { margin: 3px 0; }
+.h1-centro { text-align: center; margin-left: auto; margin-right: auto; } .h1-linha { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px; text-align: center; margin: 12px 0 0; } .giro-linha.h1-linha { font-size: clamp(1.4rem, 3vw, 2.4rem); line-height: 1.15; }
+</style>
+</head>
+<body>
+<main>
+  <section class="slide slide--teal" id="s1" aria-labelledby="titulo">
+    <div class="slide__topo"><span>Enzo Bonomi · Mentoria</span><span>1ª turma · 2027</span></div>
+    <div class="slide__corpo">
+      <h1 id="titulo" class="h1-centro">Conquiste sua vaga na gringa</h1>
+      <p class="giro-linha h1-linha" data-giro-raiz aria-label="Mentoria de carreira para BA, PM, PO, QA, marketing, suporte, infra, DevOps e financeiro."><span aria-hidden="true">Mentoria de carreira para <span class="giro" data-giro>BA</span></span></p>
+      <div class="capa__pe">
+        <div><p>Mentoria 1:1 com quem fez esse caminho sem ser DEV:</p>
+        <ul class="sub-lista">
+            <li>Diagnóstico de perfil: cargo-alvo, tipo de empresa e nível de inglês</li>
+            <li>Currículo e LinkedIn em inglês, focados em resultado</li>
+            <li>Treinamento de inglês corporativo com feedback a cada sessão</li>
+            <li>Simulação de entrevistas com vagas reais para treinar</li>
+            <li>Como encontrar empresas que contratam brasileiros</li>
+            <li>Plano para 8 semanas: busca, certificações, treino</li>
+            <li>O que esperar dos primeiros meses: cultura, trabalho assíncrono e onboarding</li>
+            <li>Suporte pelo WhatsApp entre as sessões</li>
+          </ul></div>
+        <div><a class="btn btn--ambar" href="#s7">Fazer inscrição</a> <a class="btn btn--linha" href="#s4">Ver os preços</a></div>
+      </div>
+    </div>
+    <div class="slide__pe"><span>Use ← → para navegar</span><b>01 / 07</b></div>
+  </section>
+
+  <section class="slide" id="s2" aria-labelledby="s2-h">
+    <div class="slide__topo"><span>Pra quem é</span></div>
+    <div class="slide__corpo">
+      <h2 id="s2-h">Pra quem trabalha com tecnologia e produto</h2>
+      <ul class="cargos"><li class="risco">Dev</li><li>BA</li><li>PM</li><li>PO</li><li>QA</li><li>Marketing</li><li>Suporte</li><li>Infra</li><li>DevOps</li><li>Financeiro</li></ul>
+      <div class="dois">
+        <div><b>Já trabalha na área</b>A mentoria parte da sua experiência, não ensina a profissão.</div>
+        <div><b>Inglês bom ou travando</b>Quem trava na fala pode somar o módulo de entrevista em inglês.</div>
+      </div>
+    </div>
+    <div class="slide__pe"><span>Mentoria 1:1</span><b>02 / 07</b></div>
+  </section>
+
+  <section class="slide" id="s3" aria-labelledby="s3-h">
+    <div class="slide__topo"><span>Roadmap</span><span>8 semanas</span></div>
+    <div class="slide__corpo">
+      <h2 id="s3-h">6 sessões, do diagnóstico à proposta</h2>
+      <p class="sub">60 minutos cada, por chamada de vídeo, com suporte pelo WhatsApp entre elas.</p>
+      <div class="kb" role="list" aria-label="Sessões da mentoria">
+        <span class="kb__voce" aria-hidden="true"><i></i>Você</span>
+        <div class="kb__col" role="listitem"><h3>Diagnóstico <span>1</span></h3>
+          <article class="kb__card"><span class="kb__chip">Sessão 1</span><h4>Definir cargo-alvo e plano</h4><p>Que vaga, que tipo de empresa, onde está o seu inglês.</p><div class="kb__pe"><span>Semana 1</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+        </div>
+        <div class="kb__col" role="listitem"><h3>Posicionamento <span>2</span></h3>
+          <article class="kb__card"><span class="kb__chip">Sessão 2</span><h4>Currículo internacional</h4><p>Em inglês, focado em resultado.</p><div class="kb__pe"><span>Semana 2</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+          <article class="kb__card"><span class="kb__chip">Sessão 3</span><h4>LinkedIn em inglês</h4><p>Pra recrutador de fora te achar.</p><div class="kb__pe"><span>Semana 3</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+        </div>
+        <div class="kb__col" role="listitem"><h3>Busca <span>1</span></h3>
+          <article class="kb__card"><span class="kb__chip">Sessão 4</span><h4>Estratégia de busca</h4><p>Empresas, consultorias, plataformas e como abordar recrutadores.</p><div class="kb__pe"><span>Semana 4</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+        </div>
+        <div class="kb__col" role="listitem"><h3>Seleção <span>2</span></h3>
+          <article class="kb__card"><span class="kb__chip">Sessão 5</span><h4>Simular o processo seletivo</h4><p>Entrevista comportamental e da função, com feedback.</p><div class="kb__pe"><span>Semana 6</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+          <article class="kb__card"><span class="kb__chip kb__chip--opc">Módulo opcional</span><h4>Entrevista em inglês</h4><p>3 simulações gravadas, com feedback escrito.</p></article>
+        </div>
+        <div class="kb__col" role="listitem"><h3>Proposta <span>1</span></h3>
+          <article class="kb__card"><span class="kb__chip kb__chip--fim">Sessão 6</span><h4>Avaliar proposta e contrato</h4><p>PJ ou contractor, câmbio, como receber e os primeiros meses.</p><div class="kb__pe"><span>Semana 8</span><img src="../../assets/images/profile-photo.jpg" alt="Com Enzo"></div></article>
+        </div>
+      </div>
+    </div>
+    <div class="slide__pe"><span>Sessões de 60 min</span><b>03 / 07</b></div>
+  </section>
+
+  <section class="slide" id="s4" aria-labelledby="s4-h">
+    <div class="slide__topo"><span>Investimento</span><span>Preços da 1ª turma</span></div>
+    <div class="slide__corpo">
+      <h2 id="s4-h">Quatro formas de entrar</h2>
+      <p class="sub">Pix ou cartão em até 3x sem juros.</p>
+      <div class="precos">
+        <div class="preco"><h3>Diagnóstico</h3><span class="valor">R$ 297</span><p>1 sessão, revisão de currículo e LinkedIn, plano de 30 dias. Abatido se você entrar na mentoria em até 30 dias.</p></div>
+        <div class="preco"><h3>Mentoria</h3><span class="valor">R$ 1.190</span><span class="depois">depois R$ 1.760</span><p>As 6 sessões e o suporte.</p></div>
+        <div class="preco"><h3>Entrevista em inglês</h3><span class="valor">R$ 490</span><span class="depois">depois R$ 640</span><p>3 simulações gravadas, com feedback escrito.</p></div>
+        <div class="preco"><h3>Mentoria + Entrevista</h3><span class="valor">R$ 1.590</span><span class="depois">depois R$ 2.240</span><p>Tudo junto, nas mesmas 8 semanas.</p></div>
+      </div>
+      <p class="rodape-preco"><span>5 vagas</span><span>inscrições 01 a 14/12</span><span>início 12/01/2027</span><span>término no início de março</span></p>
+    </div>
+    <div class="slide__pe"><span>Valores em reais</span><b>04 / 07</b></div>
+  </section>
+
+  <section class="slide slide--ambar" id="s5" aria-labelledby="s5-h">
+    <div class="slide__topo"><span>Garantia</span><span>Sem letras miúdas</span></div>
+    <div class="slide__corpo">
+      <h2 id="s5-h" class="garantia">Não ficou satisfeito no fim? Devolvo 100%.</h2>
+      <p class="garantia-sub">Você pode pedir o reembolso até 90 dias depois da última sessão. Não precisa explicar o motivo.</p>
+    </div>
+    <div class="slide__pe"><span>Até 90 dias</span><b>05 / 07</b></div>
+  </section>
+
+  <section class="slide" id="s6" aria-labelledby="s6-h">
+    <div class="slide__topo"><span>Quem apresenta</span><span>Enzo Bonomi</span></div>
+    <div class="slide__corpo">
+      <div class="apresenta">
+        <img src="../../assets/images/profile-photo.jpg" alt="Enzo Bonomi, de óculos e camisa branca" width="300" height="300">
+        <div>
+          <h2 id="s6-h">Fiz esse caminho sem ser dev</h2>
+          <p>Sou Senior Business Analyst na DataArt e trabalho remoto do Brasil para um cliente americano do setor financeiro. Uma recrutadora me achou pelo LinkedIn.</p>
+          <p>Tenho C1 Advanced e fui mentor voluntário de inglês na Soul Bilíngue por um ano.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide__pe"><span>Mentor</span><b>06 / 07</b></div>
+  </section>
+
+  <section class="slide" id="s7" aria-labelledby="s7-h">
+    <div class="slide__topo"><span>Próximo passo</span><span>Inscrição</span></div>
+    <div class="slide__corpo">
+      <h2 id="s7-h">Inscrição</h2>
+      <p class="sub">A mensagem abre no meu WhatsApp, e eu te respondo por lá.</p>
+      <form class="form" data-inscricao novalidate>
+        <div><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required aria-describedby="nome-erro"><p class="erro" id="nome-erro" hidden>Escreva seu nome.</p></div>
+        <div><label for="whatsapp">WhatsApp</label><input id="whatsapp" name="whatsapp" type="tel" autocomplete="tel" required aria-describedby="whatsapp-erro"><p class="erro" id="whatsapp-erro" hidden>Escreva seu WhatsApp com DDD.</p></div>
+        <div><label for="linkedin">Link do LinkedIn</label><input id="linkedin" name="linkedin" type="url" required aria-describedby="linkedin-erro"><p class="erro" id="linkedin-erro" hidden>Cole o link do seu perfil.</p></div>
+        <div><label for="vaga">Que vaga você quer lá fora?</label><input id="vaga" name="vaga"></div>
+        <div><label for="ingles">Como está o seu inglês hoje?</label><textarea id="ingles" name="ingles"></textarea></div>
+        <div><label for="trava">O que mais te trava hoje?</label><textarea id="trava" name="trava"></textarea></div>
+        <div class="cheia"><label for="oferta">Qual oferta te interessa?</label><select id="oferta" name="oferta"><option>Ainda não sei</option><option>Diagnóstico</option><option>Mentoria</option><option>Mentoria + Entrevista em inglês</option><option>Entrevista em inglês</option></select></div>
+        <div class="cheia"><button class="btn btn--teal" type="submit">Enviar pelo WhatsApp</button></div>
+      </form>
+    </div>
+    <div class="slide__pe"><span>© 2026 Enzo Bonomi · <a href="/">enzobonomi.com.br</a></span><b>07 / 07</b></div>
+  </section>
+</main>
+
+<nav class="controle" aria-label="Navegação dos slides">
+  <button type="button" data-ir="-1" aria-label="Slide anterior"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+  <span class="controle__n" data-n aria-live="polite">01 / 07</span>
+  <span class="controle__barra" aria-hidden="true"><i data-barra></i></span>
+  <button type="button" data-ir="1" aria-label="Próximo slide"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+  <a href="#s7">Fazer inscrição</a>
+</nav>
+
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  const n = document.querySelector('[data-n]');
+  const barra = document.querySelector('[data-barra]');
+  let atual = 0;
+  const marcar = (i) => {
+    atual = i;
+    n.textContent = `${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    barra.style.width = `${((i + 1) / slides.length) * 100}%`;
+  };
+  const ir = (passo) => {
+    const i = Math.min(slides.length - 1, Math.max(0, atual + passo));
+    slides[i].scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  };
+  const io = new IntersectionObserver((itens) => { itens.forEach((it) => { if (it.isIntersecting) marcar(slides.indexOf(it.target)); }); }, { rootMargin: '-40% 0px -55% 0px' });
+  slides.forEach((s) => io.observe(s));
+  document.querySelectorAll('[data-ir]').forEach((b) => b.addEventListener('click', () => ir(Number(b.dataset.ir))));
+  addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea, select, button, a')) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); ir(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); ir(-1); }
+  });
+</script>
+<script type="module" src="../shared/giro.js?v=4"></script>
+<script type="module" src="../shared/voce.js?v=3"></script>
+<script type="module" src="../shared/form.js?v=3"></script>
+</body>
+</html>
