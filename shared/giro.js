@@ -1,5 +1,5 @@
 // "É pra ___": troca o cargo a cada 1,8 s, sem parar.
-const CARGOS = ['BA', 'PM', 'PO', 'QA', 'marketing', 'suporte', 'infra', 'DevOps'];
+const CARGOS = ['BA', 'PM', 'PO', 'QA', 'marketing'];
 
 document.querySelectorAll('[data-giro]').forEach((slot) => {
   const lista = slot.dataset.giro ? JSON.parse(slot.dataset.giro) : CARGOS;

@@ -437,6 +437,14 @@ body { overflow-x: clip; }
 
 /* header fixo no topo no desktop; no celular rola com a página */
 @media (min-width: 761px) { .topo { position: sticky; top: 0; z-index: 50; } }
+
+/* sua foto no fundo do painel do hero, com o crachá mais pro meio */
+.heroi-foto { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.heroi-foto img { position: absolute; right: -10%; bottom: 0; height: 92%; aspect-ratio: 1; object-fit: cover; filter: grayscale(1) contrast(1.05); mix-blend-mode: luminosity; opacity: .55; -webkit-mask: linear-gradient(270deg, #000 50%, transparent 92%), linear-gradient(180deg, transparent, #000 22%); -webkit-mask-composite: source-in; mask: linear-gradient(270deg, #000 50%, transparent 92%), linear-gradient(180deg, transparent, #000 22%); mask-composite: intersect; }
+.heroi-foto p { position: absolute; right: 28px; bottom: 24px; margin: 0; font: 600 .78rem "Chivo Mono", monospace; letter-spacing: .06em; text-transform: uppercase; color: #e3f4ef; }
+.heroi-foto p b { color: var(--ambar); font-weight: 600; }
+.heroi .pendurado { position: relative; z-index: 1; }
+@media (min-width: 961px) { .heroi .pendurado { transform: translateX(-34%); } }
 </style>
 </head>
 <body>
@@ -447,9 +455,9 @@ body { overflow-x: clip; }
 <main>
   <section class="heroi" aria-labelledby="titulo">
     <div class="heroi__texto">
-      <p class="heroi__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.5 9.5c3 .5 4.5 2 4 4.5s1.5 3 2.5 6.5M14 3.3c-1 2.2-.2 3.7 2 4.2s2.8 2.5 1.6 4.5-.6 4 1.9 4.6"/></svg><span class="sr">Mentoria de carreira para Business Analysts, Product Managers, Product Owners, QA, marketing, suporte, Infra e DevOps.</span><span aria-hidden="true">Mentoria de carreira para <span class="giro" data-giro='["Business Analysts", "Product Managers", "Product Owners", "QA", "marketing", "suporte", "Infra", "DevOps"]'>Business Analysts</span></span></p>
+      <p class="heroi__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.5 9.5c3 .5 4.5 2 4 4.5s1.5 3 2.5 6.5M14 3.3c-1 2.2-.2 3.7 2 4.2s2.8 2.5 1.6 4.5-.6 4 1.9 4.6"/></svg><span class="sr">Mentoria de carreira para Business Analysts, Product Managers, Product Owners, QA e marketing.</span><span aria-hidden="true">Mentoria de carreira para <span class="giro" data-giro='["Business Analysts", "Product Managers", "Product Owners", "QA", "marketing"]'>Business Analysts</span></span></p>
       <h1 id="titulo">Conquiste sua vaga na gringa</h1>
-      <p class="heroi__sub"><span class="sr">Mentoria 1:1 para Business Analysts, Product Managers, Product Owners, QAs, profissionais de marketing, suporte e infra e DevOps que querem trabalhar do Brasil para empresas de fora.</span><span aria-hidden="true">Mentoria 1:1 para <b class="giro" data-giro='["Business Analysts", "Product Managers", "Product Owners", "QAs", "profissionais de marketing", "profissionais de suporte", "profissionais de infra", "DevOps"]'>Business Analysts</b><br>que querem trabalhar do Brasil para empresas de fora.</span> Prepare seu currículo e LinkedIn em inglês e treine entrevistas com vagas reais.</p>
+      <p class="heroi__sub"><span class="sr">Mentoria 1:1 para Business Analysts, Product Managers, Product Owners, QAs, profissionais de marketing que querem trabalhar do Brasil para empresas de fora.</span><span aria-hidden="true">Mentoria 1:1 para <b class="giro" data-giro='["Business Analysts", "Product Managers", "Product Owners", "QAs", "profissionais de marketing"]'>Business Analysts</b><br>que querem trabalhar do Brasil para empresas de fora.</span> Prepare seu currículo e LinkedIn em inglês e treine entrevistas com vagas reais.</p>
       <a class="btn heroi__cta" href="https://wa.me/5544988114314?text=Oi%20Enzo.%20Tenho%20interesse%20em%20saber%20mais%20sobre%20a%20mentoria." target="_blank" rel="noopener">Tenho interesse <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a>
       <ul class="heroi__fatos">
         <li><span class="heroi__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a2 2 0 0 0 0 4v4h18v-4a2 2 0 0 1 0-4V4H3z" transform="translate(0 2) scale(1 .8)"/><path d="M9 9.5h6M9 13h6"/></svg></span><span><small>Edição</small><b>1ª turma</b></span></li>
@@ -469,13 +477,14 @@ body { overflow-x: clip; }
             <div class="cracha__foto" aria-hidden="true"><svg viewBox="0 0 54 54" fill="currentColor"><circle cx="27" cy="20" r="11"/><path d="M6 52c2-12 11-18 21-18s19 6 21 18z"/></svg></div>
             <dl>
               <dt>Nome</dt><dd>Você</dd>
-              <dt>Cargo</dt><dd class="cargo" aria-label="BA, PM, PO, QA, marketing, suporte, infra ou DevOps"><span class="giro" data-giro aria-hidden="true">BA</span></dd>
+              <dt>Cargo</dt><dd class="cargo" aria-label="BA, PM, PO, QA ou marketing"><span class="giro" data-giro aria-hidden="true">BA</span></dd>
             </dl>
             <div class="cracha__pe"><span>Remoto · do Brasil</span></div>
           </div>
         </div>
       </div>
     </div>
+      <div class="heroi-foto" aria-hidden="true"><img src="assets/images/profile-photo.jpg" alt=""><p><b>Seu mentor</b> · Enzo Bonomi</p></div>
     </div>
   </section>
 
@@ -515,7 +524,7 @@ body { overflow-x: clip; }
         </div>
         <div class="formatos__item" role="listitem">
           <span class="kb__tag kb__tag--avulso">Avulso</span>
-          <p>Também dá pra contratar separado, em uma ou mais sessões, conforme o que você precisa agora. Não tem ordem fixa.</p>
+          <p>Também dá pra contratar separado, uma ou mais sessões, conforme o que você precisa agora. Não tem ordem fixa.</p>
         </div>
       </div>
     </div>
@@ -528,7 +537,7 @@ body { overflow-x: clip; }
         <div class="perfil__sim">
           <h3>É pra você se</h3>
           <ul>
-            <li>Você trabalha em tecnologia ou produto, seja como BA, PM, PO, QA, marketing, suporte, infra ou DevOps.</li>
+            <li>Você trabalha em tecnologia ou produto, seja como BA, PM, PO, QA ou marketing.</li>
             <li>Você quer uma vaga remota numa empresa de fora, recebendo em dólar ou euro.</li>
             <li>Seu inglês é de intermediário pra avançado: você fala e se vira, mas ainda trava no inglês de trabalho ou na entrevista.</li>
             <li>Você já tentou e não sabe onde errou: currículo, LinkedIn, abordagem ou entrevista.</li>
@@ -621,7 +630,7 @@ body { overflow-x: clip; }
   </section>
 </main>
 <footer class="wrap rodape">© 2026 Enzo Bonomi · <a href="/">enzobonomi.com.br</a></footer>
-<script type="module" src="shared/giro.js?v=5"></script>
+<script type="module" src="shared/giro.js?v=7"></script>
 <script type="module" src="shared/voce.js?v=3"></script>
 </body>
 </html>
