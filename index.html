@@ -445,6 +445,17 @@ body { overflow-x: clip; }
 .heroi-foto p b { color: var(--ambar); font-weight: 600; }
 .heroi .pendurado { position: relative; z-index: 1; }
 @media (min-width: 961px) { .heroi .pendurado { transform: translateX(-34%); } }
+
+/* hero mobile: sem crachá, foto por trás do texto */
+@media (max-width: 760px) {
+.heroi { position: relative; }
+.heroi__visual { position: absolute; inset: 0; height: auto; order: 0; border: 0; background: transparent; }
+.heroi__visual::before { -webkit-mask: linear-gradient(200deg, #000 10%, transparent 60%); mask: linear-gradient(200deg, #000 10%, transparent 60%); }
+.heroi .pendurado { display: none; }
+.heroi-foto img { right: -22%; top: 0; bottom: auto; height: 340px; opacity: .32; -webkit-mask: linear-gradient(270deg, #000 40%, transparent 85%), linear-gradient(0deg, transparent, #000 45%); mask: linear-gradient(270deg, #000 40%, transparent 85%), linear-gradient(0deg, transparent, #000 45%); -webkit-mask-composite: source-in; mask-composite: intersect; }
+.heroi-foto p { display: none; }
+.heroi__texto { position: relative; z-index: 1; padding: 56px 20px 44px; }
+}
 </style>
 </head>
 <body>
