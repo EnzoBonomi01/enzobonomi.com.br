@@ -395,14 +395,6 @@ body { overflow-x: clip; }
 .kb-nota__ico { flex: none; width: 32px; height: 32px; padding: 6px; box-sizing: border-box; border-radius: 8px; background: #fff; fill: none; stroke: var(--teal); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .kb-nota + .kb-nota { margin-top: 10px; }
 
-/* bloco "Eu vou te cobrar" */
-.cobranca { margin-top: 20px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 48px; align-items: start; background: var(--teal); color: #fff; border-radius: 18px; padding: 34px 36px; }
-.cobranca h3 { margin: 0; font-size: clamp(1.4rem, 2.1vw, 1.8rem); line-height: 1.1; color: #fff; }
-.cobranca h3 { border-left: 4px solid var(--ambar); padding-left: 18px; }
-.cobranca p { margin: 0; max-width: none; font-size: 1.02rem; line-height: 1.6; color: rgba(255,255,255,.88); }
-@media (max-width: 760px) { .cobranca { grid-template-columns: 1fr; padding: 26px 22px; } }
-.cobranca__texto p + p { margin-top: 12px; }
-
 /* redes sociais do mentor: faixa de largura total abaixo do card e do texto */
 .redes-bloco { grid-column: 1 / -1; border-top: 1px solid var(--linha); padding-top: 28px; }
 .redes-bloco h3 { margin: 0 0 16px; font: 600 .82rem "Chivo Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--suave); }
@@ -425,7 +417,6 @@ body { overflow-x: clip; }
 
 /* botão de interesse no fim de "O que você recebe" */
 .recebe-cta { display: flex; justify-content: center; margin-top: 48px; }
-@media (max-width: 760px) { .cobranca h3 br { display: none; } }
 
 /* header fixo no topo no desktop; no celular rola com a página */
 @media (min-width: 761px) { .topo { position: sticky; top: 0; z-index: 50; } }
@@ -552,11 +543,6 @@ body { overflow-x: clip; }
           </ul>
         </div>
       </div>
-      <div class="cobranca">
-        <h3>Eu <br>vou <br>te <br>cobrar.</h3>
-        <div class="cobranca__texto"><p>Não é só callzinha e template. Vamos passar pela sua rotina, tua performance no trabalho atual, seus estudos, seu sono e até do seu tempo de tela nas redes sociais. Se você estiver enrolando ou fazendo merda, não vai ter vista grossa.</p>
-        <p>Você tem que estar motivado(a) a fazer isso. E motivação aqui não é empolgação: é ter um motivo forte pra agir, mesmo que às vezes seja difícil ou desconfortável.</p></div>
-      </div>
     </div>
   </section>
 
@@ -609,6 +595,7 @@ body { overflow-x: clip; }
         <div class="faq__item"><h3>Preciso falar inglês fluente?</h3><p>Não precisa ser 100% fluente, mas você precisa falar e se virar: intermediário pra avançado. O foco aqui é o inglês corporativo. A gente treina o vocabulário de trabalho e se prepara pros cenários reais.</p></div>
         <div class="faq__item"><h3>Minha área não está na lista. Serve pra mim?</h3><p>Provavelmente sim. Me chama na inscrição abaixo e a gente vê o seu caso.</p></div>
         <div class="faq__item"><h3>É em grupo?</h3><p>Não. As 6 sessões são 1:1, só você e eu.</p></div>
+        <div class="faq__item"><h3>Você vai me cobrar?</h3><p>Vou. A gente olha sua rotina, seu trabalho atual, seus estudos e até seu tempo de tela. Se você estiver enrolando, eu vou falar. Por isso você precisa de um motivo forte pra agir, mesmo quando for difícil.</p></div>
         <div class="faq__item"><h3>A mentoria garante uma vaga?</h3><p>Não. Ninguém pode garantir. Eu te ajudo a chegar preparado em cada etapa do processo, mas a contratação depende do mercado e de você.</p></div>
         <div class="faq__item"><h3>Quanto tempo leva pra conseguir uma vaga lá fora?</h3><p>Varia muito. A mentoria tem sessões quinzenais e dura cerca de 3 meses, e o plano continua depois dela.</p></div>
         <div class="faq__item"><h3>Como funciona receber como PJ?</h3><p>Normalmente você abre um CNPJ aqui e emite nota fiscal de exportação de serviços. Ter um escritório de contabilidade é essencial. Na mentoria eu te passo o básico, pra você chegar na contabilidade sabendo o que pedir.</p></div>
